@@ -1,0 +1,172 @@
+/* src/components/Hero/Hero.module.css */
+.heroSection {
+    min-height: 100vh; /* Use vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* Keep gradient overlay if particles aren't the main bg */
+    background: linear-gradient(135deg, rgba(14, 16, 28, 0.8), rgba(40, 20, 60, 0.8));
+    background-color: var(--bg-color); /* Fallback */
+    padding: 80px 0 60px 0; /* Adjust padding */
+    overflow: hidden;
+    color: var(--text-color); /* Ensure base text color */
+}
+
+/* Optional overlay if using background image + particles */
+/* .heroOverlay { ... } */
+
+.heroContent {
+    z-index: 1; /* Above particles */
+    position: relative;
+    /* Animation handled by framer-motion */
+}
+
+.heroPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 30px auto; /* Center */
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 25px var(--glow-color), 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.heroName {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px var(--glow-color);
+}
+
+/* Tagline & Typewriter Styles */
+.heroTagline {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 35px; /* Increased margin */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    min-height: 1.5em; /* Adjust based on expected lines, maybe 1.5em is enough if titles are similar length */
+    position: relative;
+    display: inline-block; /* Needed for cursor alignment */
+    line-height: 1.4; /* Added for better spacing if text wraps */
+}
+
+/* Blinking Cursor */
+.typewriterText::after {
+    content: '|';
+    display: inline-block; /* Keep inline */
+    margin-left: 5px;
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    color: var(--primary-color);
+    position: relative; /* Try relative positioning */
+    top: -0.05em; /* Fine-tune vertical alignment */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typingPaused .typewriterText::after {
+    animation: none; /* Stop blinking animation */
+    opacity: 0; /* Hide cursor fully when paused */
+}
+
+.heroButtons {
+    margin-bottom: 35px; /* Increased margin */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center buttons */
+    gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+/* Button styles inherit from global .btn, .btn-primary, .btn-secondary */
+
+
+.heroSocialLinks {
+   margin-top: 20px; /* Ensure space after buttons */
+}
+
+.heroSocialLinks a {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Ensure transform works */
+}
+
+.heroSocialLinks a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2) translateY(-2px); /* Add slight lift */
+}
+
+
+/* Scroll Down Indicator */
+.scrollDownIndicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.scrollDownIndicator a {
+    display: block;
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    position: relative;
+}
+.scrollDownIndicator span {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    animation: scrollAnim 1.5s infinite ease-in-out;
+}
+@keyframes scrollAnim {
+    0% { top: 8px; opacity: 1; }
+    100% { top: 20px; opacity: 0; }
+}
+
+/* Responsive Adjustments */
+ @media (max-width: 992px) {
+    .heroName { font-size: 3rem; }
+    .heroTagline { font-size: 1.3rem; }
+}
+ @media (max-width: 768px) {
+   .heroSection { min-height: calc(100vh - 60px); padding-top: 60px;} /* Adjust height considering header */
+   .heroName { font-size: 2.5rem; }
+   .heroTagline { font-size: 1.2rem; min-height: 2.4em; max-width: 90%; }
+    /* Button size adjusted globally */
+}
+
+@media (max-width: 480px) {
+  .heroSection { min-height: calc(100vh - 60px); padding-top: 50px;}
+  .heroName { font-size: 2rem; }
+  .heroTagline { font-size: 1rem; min-height: 3em; }
+  .heroButtons {
+      flex-direction: column; /* Stack buttons */
+      gap: 15px;
+      align-items: center;
+   }
+   .heroButtons a.btn { /* Target buttons directly */
+     width: 70%;
+     padding: 12px 25px; /* Adjust padding if needed */
+     font-size: 0.9rem;
+   }
+}

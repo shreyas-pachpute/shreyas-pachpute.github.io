@@ -1,0 +1,122 @@
+/* src/pages/BlogPostPage.module.css */
+.blogPostContainer {
+    /* No padding-top needed here, main App.jsx layout handles it */
+    padding-bottom: 60px;
+    color: var(--text-color);
+    background-color: var(--bg-color); /* Ensure background color */
+    min-height: calc(100vh - var(--header-height) - 121px); /* Approx footer height */
+}
+
+.blogPostContent {
+    max-width: 800px;
+    margin: 40px auto 0 auto; /* Add margin top */
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInBlogPost 0.8s 0.2s ease-out forwards; /* Delay animation slightly */
+}
+
+@keyframes fadeInBlogPost {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.backLink {
+    display: inline-flex; /* Use inline-flex */
+    align-items: center; /* Align icon vertically */
+    gap: 8px; /* Space between icon and text */
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease;
+}
+.backLink:hover {
+    color: var(--link-hover-color);
+}
+
+.blogPostContent h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    line-height: 1.3;
+}
+
+.postMeta { /* Style for publish date etc. */
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
+
+/* Styles for content coming from dangerouslySetInnerHTML */
+.blogPostContent h2 {
+    color: var(--primary-color);
+    opacity: 0.9;
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.blogPostContent p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    opacity: 0.9;
+}
+
+.blogPostContent a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.blogPostContent a:hover {
+    color: var(--link-hover-color);
+}
+
+.blogPostContent ul,
+.blogPostContent ol {
+  margin-left: 25px;
+  margin-bottom: 1.5em;
+}
+
+ .blogPostContent li {
+   margin-bottom: 0.5em;
+   line-height: 1.7;
+ }
+
+.blogPostContent strong {
+    font-weight: 600;
+    color: var(--primary-color); /* Optional: Highlight strong text */
+}
+
+.blogPostContent code { /* Basic code styling */
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em;
+}
+
+ .loading {
+   text-align: center;
+   padding: 100px 0;
+   font-size: 1.2rem;
+   color: var(--primary-color);
+ }
+
+/* Responsive Adjustments */
+ @media (max-width: 768px) {
+   .blogPostContent { padding: 30px; }
+   .blogPostContent h1 { font-size: 2rem; }
+   .blogPostContent h2 { font-size: 1.6rem; }
+   .blogPostContent p { font-size: 1rem; }
+ }
+ @media (max-width: 480px) {
+    .blogPostContent { padding: 20px; margin-top: 20px;}
+    .blogPostContent h1 { font-size: 1.8rem; }
+ }

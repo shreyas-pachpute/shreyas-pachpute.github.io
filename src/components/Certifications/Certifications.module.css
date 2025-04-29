@@ -1,0 +1,122 @@
+/* src/components/Certifications/Certifications.module.css */
+.certificationsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); /* Adjusted min */
+    gap: 35px; /* Increased gap */
+}
+
+.certificationCard {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 30px 25px; /* Adjusted padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* Transition on border/shadow defined below */
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    position: relative; /* Needed for absolute positioning of overlay */
+    overflow: hidden; /* Hide overlay overflow */
+}
+
+/* Using Framer Motion's 'whileHover' on parent to trigger changes */
+.certificationCard:hover {
+   border-color: var(--primary-color);
+   box-shadow: 0 0 20px var(--glow-color);
+}
+
+
+.certificationBadge {
+    max-height: 85px; /* Increased size */
+    width: auto;
+    margin-bottom: 25px;
+    /* Badge scale animation handled by Framer Motion */
+}
+
+.certificationContent {
+   /* Holds text and button */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Take up remaining space if needed */
+    z-index: 2; /* Ensure content is above hover details */
+    position: relative; /* Required for z-index */
+}
+
+.certificationContent h4 {
+    font-size: 1.25rem; /* Slightly larger */
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+.certificationContent .issuer {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.8;
+    display: block;
+    margin-bottom: 5px;
+}
+.certificationContent .dateIssued {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 20px; /* Increased space */
+}
+
+.certLink, .certLinkPlaceholder {
+    padding: 7px 18px; /* Adjusted padding */
+    font-size: 0.85rem;
+    border-radius: 15px;
+    margin-top: auto; /* Push to bottom */
+    display: inline-block; /* Ensure it behaves like a button */
+     /* Remove pointer-events override from previous CSS fix - Framer Motion handles hover */
+    /* pointer-events: auto !important; */
+    position: relative; /* Still good for stacking */
+    z-index: 3; /* Above hover text */
+}
+
+.certLinkPlaceholder {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-style: italic;
+     border: 1px dashed var(--border-color); /* Indicate it's a placeholder */
+     background-color: rgba(255,255,255, 0.03);
+}
+.certLink {
+    /* Uses .btn .btn-secondary global styles */
+}
+
+
+.certificationDetailsHover {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 240, 255, 0.92); /* Slightly less transparent */
+    color: var(--bg-color);
+    padding: 15px 20px; /* Adjusted padding */
+    font-size: 0.9rem;
+    font-weight: 500; /* Make text bolder */
+    /* transform: translateY(100%); Transform handled by framer-motion variants */
+    /* transition: transform 0.4s ease; Transition handled by framer-motion variants */
+    text-align: left;
+    /* pointer-events: none; Make overlay non-interactive if needed */
+    z-index: 1; /* Below content, above base card */
+}
+/* Hover state to show details handled by framer-motion variants on parent */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .certificationsGrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+   .certificationCard { padding: 25px 20px; }
+   .certificationBadge { max-height: 70px; margin-bottom: 20px;}
+   .certificationContent h4 { font-size: 1.15rem;}
+   .certLink, .certLinkPlaceholder { font-size: 0.8rem; padding: 6px 15px; }
+   .certificationDetailsHover { font-size: 0.85rem; padding: 12px 15px; }
+}

@@ -1,0 +1,211 @@
+/* src/components/Header/Header.module.css */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent; /* Start transparent */
+    border-bottom: 1px solid transparent; /* Start transparent */
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .header.scrolled {
+    background: rgba(14, 16, 28, 0.85); /* Darker on scroll */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%; /* Ensure nav takes full width of container */
+  }
+  
+  /* Logo Styles from previous step */
+  .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--glow-color);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      line-height: 1;
+      cursor: pointer; /* Add cursor */
+  }
+  .logo:hover {
+      color: var(--bg-color);
+      background-color: var(--primary-color);
+      border-color: #fff;
+      box-shadow: 0 0 15px var(--primary-color),
+                  0 0 25px var(--primary-color),
+                  0 0 35px var(--glow-color);
+      text-shadow: none;
+  }
+  
+  
+  .navMenu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .navItem {
+     margin-left: 30px;
+  }
+  
+  .navLink {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    background: none; /* Ensure no button background */
+    border: none; /* Ensure no button border */
+    text-align: left; /* Ensure text alignment */
+  }
+  
+  .navLink:hover {
+    color: var(--primary-color);
+    transform: scale(1.05);
+  }
+  
+  /* Underline hover effect */
+  .navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  .navLink:hover::after {
+    width: 100%;
+  }
+  
+   /* Active link style */
+   .activeLink {
+     color: var(--primary-color); /* Highlight active link */
+     /* Optional: make underline persistent */
+     /* &::after {
+         width: 100%;
+     } */
+   }
+  
+  
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1002; /* Above mobile menu background */
+  }
+  
+  .mobileOnly {
+     display: none; /* Hide by default */
+  }
+  
+  /* Mobile Menu */
+  @media (max-width: 992px) { /* Breakpoint where menu collapses */
+    .navMenu {
+      display: flex; /* Keep as flex for positioning */
+      flex-direction: column;
+      position: fixed;
+      top: 0; /* Start from top */
+      left: -100%; /* Start hidden off-screen */
+      width: 70%; /* Or desired width */
+      max-width: 300px;
+      height: 100vh;
+      background: rgba(14, 16, 28, 0.98);
+      backdrop-filter: blur(15px);
+      padding-top: calc(var(--header-height) + 40px); /* Space below header */
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 40px;
+      transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      align-items: flex-start; /* Align items to the start */
+      z-index: 1001; /* Below hamburger icon when open */
+      overflow-y: auto;
+    }
+  
+    .navMenuActive {
+      left: 0; /* Slide in */
+    }
+  
+    .navItem {
+      margin-left: 0;
+      width: 100%;
+      text-align: center; /* Center text within the item */
+    }
+  
+     .navLink {
+       display: block; /* Make link take full width */
+       padding: 15px 0;
+       font-size: 1.2rem;
+       width: 100%;
+       text-align: center;
+     }
+      .navLink:hover::after { width: 0; } /* Remove underline hover on mobile link */
+      .navLink:hover { background-color: var(--card-bg-color); border-radius: 5px; color: var(--primary-color);} /* Mobile hover */
+  
+      .activeLink { /* Mobile active state */
+          background-color: var(--card-bg-color);
+          color: var(--primary-color);
+          border-radius: 5px;
+      }
+  
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .mobileOnly {
+       display: list-item; /* Show on mobile */
+       width: 100%;
+       margin-top: 20px; /* Space above resume button */
+    }
+  
+     .btnMobileResume {
+          display: block; /* Make it a block */
+          color: var(--primary-color);
+          font-weight: 500;
+          border: 1px solid var(--primary-color);
+          border-radius: 20px;
+          padding: 10px 0;
+          width: 80%; /* Control width */
+          margin: 15px auto 0 auto; /* Center it */
+          text-align: center;
+          font-size: 1rem; /* Adjust size */
+      }
+      .btnMobileResume:hover {
+          background-color: var(--primary-color);
+          color: var(--bg-color);
+          transform: none; /* Reset transform */
+      }
+  }
+   /* Adjust logo size on smaller screens if needed */
+  @media (max-width: 768px) {
+     .logo { width: 40px; height: 40px; font-size: 1.3rem; }
+  }
+   @media (max-width: 480px) {
+      .logo { width: 38px; height: 38px; font-size: 1.2rem; }
+   }
