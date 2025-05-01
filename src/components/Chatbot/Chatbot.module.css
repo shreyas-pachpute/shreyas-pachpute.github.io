@@ -263,7 +263,37 @@
       opacity: 0.5;
       background: grey;
    }
-  
+   .link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.tech-pill {
+    background: rgba(0, 240, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid var(--border-color);
+}
+
+/* Chatbot.module.css */
+.contact-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 20px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: var(--primary-color);
+  color: var(--bg-color);
+}
   
    /* Responsive */
     @media (max-width: 768px) {

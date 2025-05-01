@@ -39,6 +39,7 @@ const Chatbot = () => {
 
     const ENCRYPTED_API_KEY = "sFJsy/YFhWXEQpZkSBFeAsLMFJ/FhBx6pvZiOzeGrbBB+uELbGemRBXd3hWpzsIp1wAX7IE1rOKK1pHFl2u4YCg1la5SYOUZTn1XPIdR3qhF+TEUIfs/FjmQ2jeWZ83jaAdICV+irqHFLzHQTJZY/0WHbxhmOhtsNntkr/gd5w8wpJXl9fQxjxmcTIUVKarkJJMngX4ZQL1tMoTXM1VyU67JLTyXAi7MfVhxo6e8HCqpqh9TTqOhSOUuroGHOd0xYMvk5M0cnFzSf7TYVj/RZ/vv/sY9YZQIlWdZFEAB4tgXTdFOaa2eqjQszIiCGPm7udVjhoY/X4dsN5OhO2FMrQ=="; 
     const API_ENDPOINT = 'https://shreyas-ai-fastapis.onrender.com/chat';
+    // const API_ENDPOINT = 'http://127.0.0.1:8000/chat';
 
     try {
       const response = await fetch(API_ENDPOINT, {
