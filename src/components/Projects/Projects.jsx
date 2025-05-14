@@ -1,26 +1,39 @@
 // src/components/Projects/Projects.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Section from '../Section/Section';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projectsData } from '../../config/appData';
+import { projectsData } from '../../config/appData'; // Assuming this path is correct
 import styles from './Projects.module.css';
+
+// Define unique categories from projectsData dynamically
+const getUniqueCategories = (projects) => {
+  const allCategories = projects.reduce((acc, project) => {
+    project.category.forEach(cat => acc.add(cat));
+    return acc;
+  }, new Set());
+  return ['all', ...Array.from(allCategories)];
+};
+
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null); // For modal
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [projectCategories, setProjectCategories] = useState(['all']);
 
-  const filters = ['all', 'gen-ai', 'ml', 'web', 'cloud']; // Unique categories + 'all'
+  useEffect(() => {
+    setProjectCategories(getUniqueCategories(projectsData));
+  }, []);
+
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
   };
 
   const openModal = (project) => {
-    if (project.demoType === 'modal') {
-      setSelectedProject(project);
-    }
+    // Modal will be opened for 'modal' and 'video' types from ProjectCard
+    setSelectedProject(project);
   };
 
   const closeModal = () => {
@@ -31,47 +44,66 @@ const Projects = () => {
     ? projectsData
     : projectsData.filter(project => project.category.includes(activeFilter));
 
+  const gridContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12, // Controls the delay between each card animating in
+        delayChildren: 0.1 // Optional: delay before children start animating
+      }
+    }
+  };
+
+  const formatFilterName = (filter) => {
+    if (filter === 'ml') return 'ML/DL';
+    if (filter === 'gen-ai') return 'GenAI';
+    if (filter === 'iot') return 'IoT';
+    if (filter === 'smart-city') return 'Smart City';
+    return filter.charAt(0).toUpperCase() + filter.slice(1).replace('-', ' ');
+  };
+
+
   return (
-    <Section id="projects" title="Personal Projects" bgVariant="even">
-      {/* Filter Buttons */}
+    <Section id="projects" title="Personal Projects Showcase" bgVariant="even">
       <div className={styles.projectFilters}>
-        {filters.map((filter) => (
+        {projectCategories.map((filter) => (
           <button
             key={filter}
             className={`${styles.filterBtn} ${activeFilter === filter ? styles.active : ''}`}
             onClick={() => handleFilterClick(filter)}
           >
-            {/* Simple formatting for display */}
-            {filter === 'ml' ? 'ML/DL' : filter === 'gen-ai' ? 'Gen-AI' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+            {formatFilterName(filter)}
           </button>
         ))}
       </div>
 
-      {/* Project Grid */}
       <motion.div
-         layout // Animate layout changes when filtering
-         className={styles.projectGridNew}
+        layout // Animate layout changes when filtering
+        variants={gridContainerVariants}
+        initial="hidden"
+        animate="visible"
+        className={styles.projectGridNew}
       >
-        <AnimatePresence> {/* To animate items entering/exiting */}
+        <AnimatePresence>
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
-              onClick={() => openModal(project)} // Pass click handler
-             />
+              onClick={() => openModal(project)}
+            />
           ))}
         </AnimatePresence>
       </motion.div>
 
-      {/* Modal */}
-       <AnimatePresence>
-            {selectedProject && (
-                 <ProjectModal
-                    project={selectedProject}
-                    onClose={closeModal}
-                />
-            )}
-        </AnimatePresence>
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={closeModal}
+          />
+        )}
+      </AnimatePresence>
     </Section>
   );
 };

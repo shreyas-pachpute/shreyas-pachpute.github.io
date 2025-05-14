@@ -1,48 +1,72 @@
 // src/components/Projects/ProjectModal.jsx
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
-import styles from './Projects.module.css'; // Reuse project styles for consistency
+import styles from './Projects.module.css';
 
 const backdropVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.3 } }
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
+  exit: { opacity: 0, transition: { duration: 0.3, delay: 0.3 } } // Delay exit to allow modal to animate out
 };
 
 const modalVariants = {
-    hidden: { opacity: 0, y: -50, scale: 0.9 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 200, damping: 20, duration: 0.4 } },
-    exit: { opacity: 0, y: 50, scale: 0.9, transition: { duration: 0.3 } }
+  hidden: { opacity: 0, y: -30, scale: 0.9, rotateX: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 170,
+      damping: 25,
+      duration: 0.5,
+      when: "beforeChildren", // Animate modal first
+      staggerChildren: 0.15   // Then animate children
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: 50,
+    scale: 0.85,
+    rotateX: 20,
+    transition: { duration: 0.3, ease: "easeIn" }
+  }
+};
+
+const contentItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" }
+  }
 };
 
 const ProjectModal = ({ project, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') { // Updated to use event.key
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    document.body.style.overflow = 'hidden';
 
-     // Close modal on escape key press
-     useEffect(() => {
-        const handleEsc = (event) => {
-           if (event.keyCode === 27) {
-            onClose();
-           }
-        };
-        window.addEventListener('keydown', handleEsc);
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
 
-        return () => {
-          window.removeEventListener('keydown', handleEsc);
-          document.body.style.overflow = ''; // Restore scroll
-        };
-      }, [onClose]);
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
-
-      // Close modal when clicking the backdrop
-     const handleBackdropClick = (e) => {
-         if (e.target === e.currentTarget) { // Ensure click is on backdrop itself
-             onClose();
-         }
-     };
-
-      if (!project || !project.demoInfo) return null; // Should not happen if selectedProject is set
+  if (!project || !project.demoInfo) return null;
 
   return (
     <motion.div
@@ -51,27 +75,51 @@ const ProjectModal = ({ project, onClose }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      onClick={handleBackdropClick} // Close on backdrop click
+      onClick={handleBackdropClick}
     >
       <motion.div
         className={styles.modalContent}
         variants={modalVariants}
-        // No need for exit here as parent AnimatePresence handles it
+        // initial, animate, exit are inherited from AnimatePresence in Projects.jsx
       >
-        <button className={styles.closeModalBtn} onClick={onClose} aria-label="Close modal">
+        <motion.button
+            className={styles.closeModalBtn}
+            onClick={onClose}
+            aria-label="Close modal"
+            variants={contentItemVariants} // Can also have its own subtle animation
+            whileHover={{ scale: 1.15, rotate: 180, color: 'var(--primary-color)'}}
+            transition={{duration: 0.2}}
+        >
           <FaTimes />
-        </button>
-        <h2>{project.demoInfo.title || project.title}</h2> {/* Use specific demo title or fallback */}
-        <p>{project.demoInfo.text}</p>
-        {project.demoInfo.image && (
+        </motion.button>
+
+        <motion.h2 variants={contentItemVariants}>
+          {project.demoInfo.title || project.title}
+        </motion.h2>
+
+        <motion.p variants={contentItemVariants}>
+          {project.demoInfo.text}
+        </motion.p>
+
+        {project.demoType === 'modal' && project.demoInfo.image && (
+          <motion.div variants={contentItemVariants} className={styles.modalMediaContainer}>
             <img
-                src={project.demoInfo.image}
-                alt={`${project.title} Demo Visual`}
-                className={styles.modalImage}
-                loading="lazy"
+              src={project.demoInfo.image}
+              alt={`${project.title} Demo Visual`}
+              className={styles.modalImage}
+              loading="lazy"
             />
+          </motion.div>
         )}
-         {/* Add other demo elements like videos here */}
+
+        {project.demoType === 'video' && project.demoInfo.videoUrl && (
+          <motion.div variants={contentItemVariants} className={`${styles.modalMediaContainer} ${styles.modalVideoWrapper}`}>
+            <video controls autoPlay muted loop className={styles.modalVideo} preload="metadata">
+              <source src={project.demoInfo.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
+        )}
       </motion.div>
     </motion.div>
   );

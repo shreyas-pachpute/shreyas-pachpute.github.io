@@ -53,52 +53,53 @@ export const skillCategories = [
   
   // --- PROJECTS ---
   export const projectsData = [
-    {
-      id: 'med-diagnosis-ai',
-      title: "AI-Powered Medical Diagnosis Assistant",
-      description: "Developed a deep learning system analyzing medical imaging with 94% accuracy in early disease detection, deployed in partner clinics.",
-      image: "/img/placeholder-project1.png",
-      tags: ["TensorFlow", "PyTorch", "DICOM Processing", "Grad-CAM", "AWS SageMaker"],
-      category: ["gen-ai", "healthcare"],
-      github: null,
-      demoType: "modal",
-      demoInfo: {
-        title: "Radiology Assistant Demo",
-        text: "CNN-based system trained on 50k+ annotated scans detects 12 pathologies. Features explainable AI overlays and integrates with hospital PACS systems. Achieved 30% faster diagnosis in clinical trials.",
-        image: "/img/projects/med-ai-interface.jpg"
-      }
-    },
-    {
-      id: 'autonomous-drone-nav',
-      title: "Autonomous Delivery Drone Navigation System",
-      description: "Created vision-based navigation using reinforcement learning, enabling 15km range obstacle avoidance in urban environments.",
-      image: "/img/projects/drone-nav-system.jpg",
-      tags: ["Python", "OpenCV", "ROS", "YOLOv8", "Gazebo Simulation"],
-      category: ["robotics", "computer-vision"],
-      github: "https://github.com/shreyas-pachpute/Drone-Navigation-3D-Mapping",
-      demoType: "video",
-      demoInfo: {
-        title: "Urban Delivery Simulation",
-        text: "Real-time object detection and path planning system processes sensor fusion data (LiDAR + camera) at 30FPS. Demonstrated 98% successful delivery rate in simulated city environments.",
-        videoUrl: "/videos/drone-sim-demo.mp4"
-      }
-    },
-    {
-      id: 'cyber-threat-detection',
-      title: "Real-time Network Anomaly Detection Engine",
-      description: "Built ML pipeline processing 1M+ events/sec with 99.97% recall for zero-day attack detection in enterprise networks.",
-      image: "/img/projects/cyber-ai-core.jpg",
-      tags: ["Python", "Isolation Forest", "Apache Kafka", "Prometheus", "Grafana"],
-      category: ["ml", "cybersecurity"],
-      github: "https://github.com/shreyas-pachpute/ML-Cyber-Defense",
-      demoType: "live",
-      demoInfo: {
-        title: "Live Attack Simulation Dashboard",
-        text: "Multi-model ensemble detects novel attack patterns while maintaining <0.01% FP rate. Features automatic IOC generation and SIEM integration.",
-        liveUrl: "https://cyberdemo.shreyas-tech.com"
-      }
+  {
+    id: 'ayunexa',
+    title: "AYUNEXA AI-Powered Healthcare Eco-System",
+    description: "Developed an EcoSystem for users that comes under Healthcare Ecosystem like doctors, patients, Medicals, etc.. and made whole workflow of ecosystem easy and efficient beneficial for each who uses for ecosystem.",
+    image: "/img/placeholder-project1.png",
+    tags: ["TensorFlow", "PyTorch", "DICOM Processing", "Grad-CAM", "AWS SageMaker"],
+    category: ["gen-ai", "healthcare"],
+    github: null,
+    demoType: "modal",
+    demoInfo: {
+      title: "AYUCARE Demo",
+      text: "Works very smooth.",
+      image: "/img/projects/med-ai-interface.jpg"
     }
-  ];
+  },
+  {
+    id: 'tradenexa',
+    title: "TRADENEXA Autonomous Multi-Agent Trading System",
+    description: "Engineered a multi-agent research and trading platform leveraging reinforcement learning and algorithmic strategies to execute trades in real time across global financial markets.",
+    image: "/img/placeholder-project2.png",
+    tags: ["Python", "Reinforcement Learning", "Multi-Agent Systems", "ZeroMQ", "Pandas", "NumPy"],
+    category: ["finance", "ai"],
+    github: "https://github.com/your-org/tradenexa-system",
+    demoType: "live",
+    demoInfo: {
+      title: "Real-Time Trading Dashboard",
+      text: "Interactive dashboard showcasing agent performance: sub-5ms order placement and 15% reduction in portfolio volatility through collaborative strategy adaptation.",
+      liveUrl: "https://tradenexa-demo.yourdomain.com"
+    }
+  },
+  {
+    id: 'urbanexa',
+    title: "URBANEXA Smart City Traffic & Emergency Response System",
+    description: "Designed an autonomous multi-agent traffic management and emergency response network that dynamically optimizes signal timing, reroutes traffic, and coordinates first-responder dispatch in real time.",
+    image: "/img/placeholder-project3.png",
+    tags: ["JavaScript", "IoT", "MQTT", "ROS", "OpenStreetMap", "Reinforcement Learning"],
+    category: ["iot", "smart-city"],
+    github: "https://github.com/your-org/urbanexa-system",
+    demoType: "video",
+    demoInfo: {
+      title: "Traffic Control Simulation",
+      text: "Video demonstration of adaptive signal control achieving 30% reduction in congestion and 25% faster emergency vehicle response during peak hours.",
+      videoUrl: "/videos/urbanexa-sim-demo.mp4"
+    }
+  }
+];
+
   
   // --- EXPERIENCE ---
    export const experienceData = [
