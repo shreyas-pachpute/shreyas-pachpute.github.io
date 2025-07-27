@@ -4,10 +4,10 @@ import Section from '../Section/Section';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projectsData } from '../../config/appData'; // Assuming this path is correct
+import { projectsData, contactInfo } from '../../config/appData';
+import { FaGithub } from 'react-icons/fa';
 import styles from './Projects.module.css';
 
-// Define unique categories from projectsData dynamically
 const getUniqueCategories = (projects) => {
   const allCategories = projects.reduce((acc, project) => {
     project.category.forEach(cat => acc.add(cat));
@@ -15,7 +15,6 @@ const getUniqueCategories = (projects) => {
   }, new Set());
   return ['all', ...Array.from(allCategories)];
 };
-
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -26,13 +25,14 @@ const Projects = () => {
     setProjectCategories(getUniqueCategories(projectsData));
   }, []);
 
+  const githubProfileUrl = contactInfo.find(info => info.type === 'github')?.href;
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
   };
 
-  const openModal = (project) => {
-    // Modal will be opened for 'modal' and 'video' types from ProjectCard
+  // This function will be passed to ProjectCard to be called by its demo buttons
+  const openModalForProject = (project) => {
     setSelectedProject(project);
   };
 
@@ -49,8 +49,8 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12, // Controls the delay between each card animating in
-        delayChildren: 0.1 // Optional: delay before children start animating
+        staggerChildren: 0.12,
+        delayChildren: 0.1
       }
     }
   };
@@ -62,7 +62,6 @@ const Projects = () => {
     if (filter === 'smart-city') return 'Smart City';
     return filter.charAt(0).toUpperCase() + filter.slice(1).replace('-', ' ');
   };
-
 
   return (
     <Section id="projects" title="Personal Projects Showcase" bgVariant="even">
@@ -90,11 +89,26 @@ const Projects = () => {
             <ProjectCard
               key={project.id}
               project={project}
-              onClick={() => openModal(project)}
+              // Pass the specific function to open the modal, tied to *this* project
+              onOpenModal={() => openModalForProject(project)}
             />
           ))}
         </AnimatePresence>
       </motion.div>
+
+      {githubProfileUrl && (
+        <div className={styles.viewMoreContainer}>
+          <a
+            href={githubProfileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`btn ${styles.viewMoreBtn}`}
+            aria-label="View More Projects on GitHub"
+          >
+            View More on GitHub <FaGithub />
+          </a>
+        </div>
+      )}
 
       <AnimatePresence>
         {selectedProject && (

@@ -98,27 +98,100 @@
 }
 
 .projectCardContent {
-    padding: 28px; /* Increased padding */
+    padding: 28px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .projectCardContent h3 {
-    font-size: 1.4rem; /* Slightly larger */
+    font-size: 1.4rem;
     color: var(--primary-color);
-    margin-bottom: 18px; /* Increased space */
+    margin-bottom: 10px; /* Reduced margin as description might not be there initially */
     line-height: 1.35;
     letter-spacing: 0.3px;
 }
 
-.projectCardContent p {
-    font-size: 0.98rem; /* Slightly larger */
-    margin-bottom: 22px;
-    flex-grow: 1;
+/* Styles for the actual description paragraph */
+.projectDescription {
+    font-size: 0.98rem;
     opacity: 0.85;
     color: var(--text-color);
     line-height: 1.65;
+    /* margin-bottom: 22px; /* This will be handled by motion variants or set when expanded */
+    /* overflow: hidden; */ /* Managed by AnimatePresence for height animation */
+    /* REMOVE previous line-clamping styles: */
+    /* display: -webkit-box; ... etc. */
+}
+
+.clickToExpandPrompt, .clickToCollapsePrompt {
+    font-size: 0.85rem;
+    color: var(--primary-color-light);
+    margin-top: 5px; /* Space from title if description is collapsed */
+    margin-bottom: 15px; /* Space before tech stack */
+    cursor: pointer;
+    display: inline-flex; /* To align icon with text */
+    align-items: center;
+    transition: color 0.3s ease;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.clickToExpandPrompt:hover, .clickToCollapsePrompt:hover {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.projectCardNew .projectImageContainer { /* Ensure image container has a defined aspect-ratio or height */
+    width: 100%;
+    height: 230px; /* Keep this or use aspect-ratio for responsive height */
+    overflow: hidden;
+    border-bottom: 1.5px solid var(--border-color);
+}
+
+
+/* Styles for the tech stack, project links, etc. remain largely the same */
+/* but review margin-bottom of .projectCardContent p or add margin-top to .techStack */
+/* to ensure spacing is correct when description appears. */
+
+.techStack {
+    /* margin-bottom: 25px;  Re-evaluate based on expanded description */
+    margin-top: 10px; /* Add some top margin if description is short or absent */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Adjust margin-top of projectLinks to be consistent */
+.projectLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: auto; /* This is key to push it to the bottom */
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+
+.projectCardContent p {
+    font-size: 0.98rem; /* Slightly larger */
+    margin-bottom: 22px;
+    /* flex-grow: 1; */ /* REMOVED to prevent description from taking all space */
+    opacity: 0.85;
+    color: var(--text-color);
+    line-height: 1.65;
+
+    /* --- ADDED FOR LINE CLAMPING --- */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Show 3 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Set a min-height to ensure space for 3 lines even if text is shorter, contributing to consistent card structure */
+    /* (0.98rem font-size * 1.65 line-height * 3 lines) - calculated relative to font size of p itself */
+    min-height: calc(1em * 1.65 * 3); /* Using em unit relative to p's font-size */
+    /* --- END OF LINE CLAMPING --- */
 }
 
 .techStack {
@@ -142,14 +215,13 @@
 .projectCardNew:hover .techStack span { /* Change on card hover */
     background-color: rgba(0, 240, 255, 0.2);
     color: #fff; /* Brighter color on hover */
-    /* transform: translateY(-1px); */ /* Kept subtle with Framer on span */
 }
 
 .projectLinks {
     display: flex;
     flex-wrap: wrap;
     gap: 15px; /* Increased gap */
-    margin-top: auto;
+    margin-top: auto; /* Pushes links to the bottom of the card content area */
     align-items: center;
     padding-top: 15px;
     border-top: 1px solid var(--border-color); /* Separator */
@@ -191,6 +263,49 @@
     gap: 8px;
     padding: 8px 5px;
 }
+
+
+/* --- ADDED: View More Button Container & Styles --- */
+.viewMoreContainer {
+  text-align: center;
+  margin-top: 50px; /* Space above the button */
+  margin-bottom: 30px; /* Space below the button */
+}
+
+.viewMoreBtn {
+  /* Assuming you have a base .btn class, or define all styles here */
+  background-color: var(--primary-color);
+  color: var(--bg-color) !important; /* Ensure text color contrasts with primary bg, !important if .btn has other color */
+  padding: 14px 35px; /* Generous padding */
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px; /* Space between text and icon */
+  transition: all 0.35s ease-out;
+  border: 2px solid var(--primary-color); /* Start with border matching background */
+  box-shadow: 0 5px 18px var(--primary-glow-faint); /* Initial subtle glow */
+}
+
+.viewMoreBtn:hover, .viewMoreBtn:focus {
+  background-color: transparent;
+  color: var(--primary-color) !important; /* Text color becomes primary */
+  border-color: var(--primary-color); /* Border becomes visible */
+  transform: translateY(-4px) scale(1.03); /* More lift and slight scale */
+  box-shadow: 0 10px 25px var(--primary-glow); /* Enhanced glow on hover */
+}
+
+.viewMoreBtn svg {
+  font-size: 1.3rem; /* Slightly larger icon */
+  transition: transform 0.3s ease;
+}
+.viewMoreBtn:hover svg {
+    transform: translateX(3px); /* Slight icon movement */
+}
+/* --- END: View More Button --- */
+
 
 /* Modal Styles */
 .modalBackdrop {
@@ -321,14 +436,30 @@
   .modalContent h2 { font-size: 1.7rem; margin-bottom: 15px; padding-bottom: 10px; }
   .modalContent p { font-size: 1rem; margin-bottom: 20px; }
   .filterBtn { font-size: 0.85rem; padding: 8px 18px; }
+  .viewMoreBtn { padding: 12px 25px; font-size: 0.9rem; } /* Responsive View More Btn */
 }
 @media (max-width: 480px) {
   .projectGridNew { gap: 30px; }
   .filterBtn { font-size: 0.75rem; padding: 7px 15px; }
   .projectCardContent h3 { font-size: 1.25rem; }
-  .projectCardContent p { font-size: 0.9rem; }
+  .projectCardContent p {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3; /* Could reduce line clamp on very small screens if needed */
+     min-height: calc(1em * 1.65 * 3);
+  }
   .modalContent { padding: 20px 15px; max-height: 90vh;}
   .modalContent h2 { font-size: 1.5rem; margin-bottom: 15px;}
   .modalImage, .modalVideo { max-height: 50vh; }
   .closeModalBtn { top: 12px; right: 12px; font-size: 1.6rem;}
+  .viewMoreBtn { padding: 10px 20px; font-size: 0.85rem; gap: 8px; } /* Responsive View More Btn */
+
+}
+@media (max-width: 480px) {
+  /* ... existing responsive styles ... */
+  .projectCardContent p.projectDescription { /* If you had specific styles for it */
+    font-size: 0.9rem;
+  }
+  .clickToExpandPrompt, .clickToCollapsePrompt {
+    font-size: 0.8rem;
+  }
 }
