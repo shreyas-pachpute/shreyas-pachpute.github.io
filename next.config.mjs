@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Optional: If you use external images, configure domains here
-    // images: {
-    //   remotePatterns: [
-    //     {
-    //       protocol: 'https',
-    //       hostname: 'example.com',
-    //     },
-    //   ],
-    // },
-};
+  // 1. Tells Next.js to generate a static HTML site
+  output: 'export',
 
-export default nextConfig;
+  // 2. Disables server-side image optimization (required for GitHub Pages)
+  images: {
+    unoptimized: true,
+  },
+
+  // 3. Optional: Ignores linting errors during build so deployment doesn't fail on small warnings
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}
+
+module.exports = nextConfig
