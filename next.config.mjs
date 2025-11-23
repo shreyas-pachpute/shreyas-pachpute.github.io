@@ -8,10 +8,11 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  // 3. Optional: Ignores linting errors during build so deployment doesn't fail on small warnings
+  // 3. Ignores linting errors during build so deployment doesn't fail on warnings
   eslint: {
     ignoreDuringBuilds: true,
   },
-}
+};
 
-module.exports = nextConfig
+// CHANGE: Use 'export default' instead of 'module.exports' for .mjs files
+export default nextConfig;
