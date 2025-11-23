@@ -3,8 +3,8 @@
 'use client';
 
 import { workPageContent } from '@/constants/workPageData';
-import Button from '@/components/1_atoms/Button'; 
-import { FaChevronDown, FaBullseye, FaLightbulb, FaCheckCircle, FaArrowRight } from 'react-icons/fa'; 
+import Button from '@/components/1_atoms/Button';
+import { FaChevronDown, FaBullseye, FaLightbulb, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -110,9 +110,10 @@ export default function WorkPage() {
             ))}
           </div>
 
+          {/* UPDATED: Link points to /insights now */}
           <div className="mt-16 text-center">
-            <Button href="/projects" variant="primary" className="text-lg px-8 py-4">
-              More Case Studies & Technical Blogs <FaArrowRight className="inline ml-2"/>
+            <Button href="/insights" variant="primary" className="text-lg px-8 py-4">
+              Explore Blogs & Case Studies <FaArrowRight className="inline ml-2"/>
             </Button>
           </div>
 

@@ -167,7 +167,7 @@ export const homeContent = {
       },
     ],
     cta: {
-      text: "View Full Architectures",
+      text: "View More Work", 
       link: "/work",
     },
   },
