@@ -1,5 +1,4 @@
-// src/components/1_atoms/Button.jsx
-
+'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
