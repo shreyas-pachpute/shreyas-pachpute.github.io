@@ -1,5 +1,3 @@
-// src/constants/globalData.js
-
 import { FaLinkedin, FaGithub, FaTwitter, FaMedium, FaEnvelope } from 'react-icons/fa';
 
 export const globalContent = {
@@ -10,7 +8,8 @@ export const globalContent = {
       { href: "/about", label: "About" },
       { href: "/work", label: "Work" },
       { href: "/projects", label: "Projects" },
-      { href: "/insights", label: "Insights" }, // Added for easy access
+      { href: "/insights", label: "Insights" }, 
+      { href: "/learning", label: "Learning" },
       { href: "/contact", label: "Contact" },
     ],
     ctaButton: {
@@ -30,6 +29,7 @@ export const globalContent = {
       { href: "/work", label: "Work" },
       { href: "/projects", label: "Projects" },
       { href: "/insights", label: "Insights" },
+      { href: "/learning", label: "Learning" },
       { href: "/documents/Shreyas_Pachpute_Resume.pdf", label: "Resume" },
     ],
     connectLinks: [

@@ -1,5 +1,3 @@
-// src/app/page.jsx
-
 import HeroSection from '@/components/4_sections/home/HeroSection';
 import ValueProposition from '@/components/4_sections/home/ValueProposition';
 import ImpactMetrics from '@/components/4_sections/home/ImpactMetrics';
@@ -14,8 +12,8 @@ export default function HomePage() {
       <HeroSection />
       <ValueProposition />
       <ImpactMetrics />
-      <TechShowcase />
       <SocialProof />
+      <TechShowcase />
       <WorkPreview />
       <CallToAction />
     </>

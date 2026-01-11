@@ -1,8 +1,6 @@
-// src/constants/projectsPageData.js
-
 export const projectsPageContent = {
   hero: {
-    title: "Technical Projects",
+    title: "Personal Projects",
     subtitle: "End-to-end GenAI implementations with architecture diagrams, reproducible code, and performance benchmarks.",
   },
   projects: [
@@ -12,7 +10,7 @@ export const projectsPageContent = {
       description: "Production RAG system utilizing Knowledge Graphs for 95% accurate product classification.",
       imageUrl: "/images/projects/hsn-classifier.png",
       links: [
-        { type: "live", href: "#" }, // Placeholder for demo link
+        { type: "live", href: "#" }, 
         { type: "github", href: "https://github.com/shreyas-pachpute" },
       ],
       details: {

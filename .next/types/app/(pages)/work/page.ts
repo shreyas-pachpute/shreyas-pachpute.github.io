@@ -1,4 +1,4 @@
-// File: D:\SHREYAS\RESUME\PORTFOLIO-FRONTEND\portfolio-frontend\src\app\(pages)\work\page.jsx
+// File: D:\SHREYAS\PORTFOLIO\shreyas-pachpute.github.io\src\app\(pages)\work\page.jsx
 import * as entry from '../../../../../src/app/(pages)/work/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

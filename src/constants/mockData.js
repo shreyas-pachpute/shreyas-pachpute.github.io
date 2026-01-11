@@ -1,5 +1,3 @@
-// src/constants/mockData.js
-
 import { FaPython, FaAws, FaDocker } from 'react-icons/fa';
 import { SiDotnet, SiPytorch, SiNvidia, SiTerraform } from 'react-icons/si';
 import { VscServerProcess } from "react-icons/vsc";
@@ -8,19 +6,20 @@ import { GrSystem } from "react-icons/gr";
 
 export const homeContent = {
   hero: {
-    tag: "AI Architect & Systems Engineer",
+    tag: "AI Architect",
     name: "Shreyas Pachpute",
-    title: "Shreyas Pachpute",
-    subtitle: "Architecting production-grade GenAI systems that scale. Specialized in multi-agent workflows, custom LLM inference optimization, and secure RAG infrastructure on AWS.",
+    title: "SHREYAS PACHPUTE",
+    subtitle: "Designing & building reliable, scalable end-to-end AI systems.",
+    microcopy: "Available for senior roles, freelance engagements, and architecture reviews.", 
     stats: [
       { value: 150, suffix: "+", label: "Tokens/sec (vLLM)" },
-      { value: 15, suffix: "k+", label: "Infra Savings", isCurrency: true }, // UPDATED to 15k
-      { value: 8, suffix: "+", label: "Production Agents" },
+      { value: 15, suffix: "k", label: "Infra Savings", isCurrency: true },
+      { value: 70, suffix: "%", label: "Ticket Deflection" },
     ],
     ctaButtons: {
-      primary: { text: "View Architecture & Work", link: "/work" },
+      primary: { text: "View my work", link: "/work" },
       secondary: { text: "Download Resume", link: "/documents/Shreyas_Pachpute_Resume.pdf" },
-      tertiary: { text: "Discuss Infrastructure", link: "/contact" },
+      tertiary: { text: "Contact Me", link: "/contact" },
     },
     professionalPhotoUrl: "/images/professional-photo.png",
     techIcons: [
@@ -33,96 +32,64 @@ export const homeContent = {
   },
 
   valueProposition: {
-    eyebrow: "ARCHITECTURAL PHILOSOPHY",
-    heading: "Bridging Enterprise Reliability with GenAI Innovation",
-    description: "I don't just run notebooks. I build resilient, cost-optimized, and observable AI systems that integrate seamlessly with existing enterprise stacks.",
+    eyebrow: "MY ARCHITECTURAL PHILOSOPHY",
+    heading: "Bridging enterprise reliability with GenAI innovation",
+    description: "I don’t just run notebooks — I design resilient, cost-optimized, and observable AI systems that integrate with existing enterprise stacks. I balance product constraints, operational SLAs, and modern LLM capabilities to ship stable systems that deliver measurable business outcomes.",
     cards: [
       {
         icon: GrSystem,
-        title: "Enterprise Systems Architect",
-        items: [
-          "Microservices (FastAPI + .NET)",
-          "Legacy ERP/CRM Integration",
-          "Event-Driven Architecture"
-        ],
+        title: "Enterprise System Architect",
+        text: "I integrated AI automation into a .NET-based enterprise system, adding end-to-end workflows and safe release practices so AI features could run at scale without breaking existing business logic.",
       },
       {
         icon: AiOutlineRobot,
         title: "GenAI & Agent Engineer",
-        items: [
-          "RAG with <300ms p95 Latency",
-          "Agent Workflows (85% Auto-resolve)",
-          "Evaluation Pipelines (RAGAS)"
-        ],
+        text: "Designed and deployed RAG systems and autonomous agents that handle complex user intents and integrate with backend services for reliable action execution and escalation.",
       },
       {
         icon: AiOutlineCloud,
-        title: "Cloud & MLOps Specialist",
-        items: [
-          "Multi-GPU Inference (vLLM)",
-          "Cost-Optimized Auto-scaling",
-          "Containerization (Docker/K8s)"
-        ],
+        title: "Cloud Specialist",
+        text: "Deployed LLM-based inference on AWS (GPU-backed clusters), tuned for latency and cost, with autoscaling, model versioning, and secure data flows.",
       },
     ],
   },
 
   impactMetrics: {
     eyebrow: "ENGINEERING METRICS",
-    heading: "Optimized for Scale & Cost",
+    heading: "Optimized for scale & cost",
+    disclaimer: "Metrics are representative of production deployments — screenshots, dashboards, and sanitized logs available in case studies.",
     metrics: [
-      // UPDATED Value here
-      { value: 15000, label: "Annual Savings", description: "via vLLM & Spot Instances", isCurrency: true },
-      { value: 300, label: "p95 Latency", description: "Milliseconds (RAG Pipeline)" },
-      { value: 150, label: "Throughput", description: "Tokens/sec on A10G" },
-      { value: 95, label: "Classification Accuracy", description: "HSN Code Engine" },
-      { value: 70, label: "Ticket Deflection", description: "Multi-Agent System", isPercentage: true },
-      { value: 99.9, label: "System Uptime", description: "% SLA Maintained" },
+      { value: 15000, label: "Annual infrastructure savings (estimated)", description: "", isCurrency: true },
+      { value: 300, label: "p95 latency for RAG pipeline", description: "Milliseconds" },
+      { value: 150, label: "Throughput on GPUs (inference)", description: "Tokens/sec" },
+      { value: 70, label: "Ticket deflection with multi-agent system", description: "", isPercentage: true },
     ],
   },
 
   techShowcase: {
-    eyebrow: "FLAGSHIP ARCHITECTURES",
-    heading: "Systems I've Built",
-    description: "A look under the hood at the infrastructure and design patterns used to deliver production AI.",
+    eyebrow: "SYSTEMS I'VE BUILT",
+    heading: "Production Architectures",
+    description: "A look under the hood at the infrastructure and design patterns used to deliver production AI.", // Cleared description as per new layout preference
+    cta: { text: "View More", link: "/work" }, 
     cards: [
       {
-        title: "High-Throughput LLM Inference Engine",
-        description: "Deployed Llama 3 on AWS g5.xlarge instances using vLLM and quantization. Achieved 150 tok/s throughput while reducing inference costs by 40% vs. commercial APIs.",
-        // UPDATED path to .png
+        title: "High-throughput LLM inference engine",
+        description: "Local GPU cluster delivering low-latency, high-throughput inference for production workloads.",
         visual: "/images/tech/server-rack.png",
-        tech: [
-          { icon: VscServerProcess, name: "vLLM" },
-          { icon: SiNvidia, name: "CUDA" },
-          { icon: FaAws, name: "AWS EC2" },
-        ],
       },
       {
-        title: "Hybrid .NET + Python Microservices",
-        description: "Designed a bridge pattern allowing a legacy .NET enterprise ERP to consume modern Python AI services asynchronously via RabbitMQ, ensuring zero blocking operations.",
-        // UPDATED path to .png
+        title: "Sales Bot",
+        description: "Deployed on company website; increased qualified leads and reduced manual qualification work.",
         visual: "/images/tech/architecture-diagram.png",
-        tech: [
-          { icon: SiDotnet, name: ".NET 8" },
-          { icon: FaPython, name: "FastAPI" },
-          { icon: AiOutlineApi, name: "RabbitMQ" },
-        ],
       },
       {
-        title: "Context-Aware RAG Agent",
-        description: "Built a retrieval system using hybrid search (keyword + semantic) and re-ranking. Integrated with HubSpot to provide sales agents with real-time, grounded answers.",
-        // UPDATED path to .png
+        title: "Context-aware customer chatbots (RAG)",
+        description: "Customers receive accurate, contextually relevant answers with traceable source citations.",
         visual: "/images/tech/rag-flow.png",
-        tech: [
-          { icon: AiOutlineRobot, name: "LangChain" },
-          { icon: AiOutlineCloud, name: "Pinecone" },
-          { icon: FaDocker, name: "Docker" },
-        ],
       },
     ],
   },
 
-  // ... (Keep socialProof, workPreview, cta exactly as they were in the previous file)
   socialProof: {
     eyebrow: "CREDENTIALS",
     heading: "Certified Expertise",
@@ -167,8 +134,8 @@ export const homeContent = {
       },
     ],
     cta: {
-      text: "View More Work", 
-      link: "/work",
+      text: "View More Insights", 
+      link: "/insights", 
     },
   },
 

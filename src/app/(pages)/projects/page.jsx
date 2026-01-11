@@ -1,5 +1,3 @@
-// src/app/projects/page.jsx
-
 import { projectsPageContent } from '@/constants/projectsPageData';
 import { FaGithub, FaExternalLinkAlt, FaBook, FaStickyNote } from 'react-icons/fa';
 import Image from 'next/image';

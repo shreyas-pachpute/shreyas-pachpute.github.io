@@ -1,5 +1,3 @@
-// src/components/4_sections/home/ImpactMetrics.jsx
-
 'use client';
 import { motion } from 'framer-motion';
 import { homeContent } from '@/constants/mockData';
@@ -30,7 +28,7 @@ const ImpactMetrics = () => {
         </div>
 
         <motion.div
-          className="grid gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-8 mt-16 md:grid-cols-2 lg:grid-cols-4" 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -42,14 +40,26 @@ const ImpactMetrics = () => {
               className="p-8 text-center transition-all duration-300 rounded-xl glass-card hover:shadow-2xl hover:shadow-electric-purple/20 hover:border-electric-purple/50"
               variants={itemVariants}
             >
-              <p className="text-6xl font-bold text-white font-mono">
+              <p className="text-4xl md:text-5xl font-bold text-white font-mono">
                 <AnimatedCounter to={metric.value} isCurrency={metric.isCurrency} isPercentage={metric.isPercentage} />
               </p>
-              <h3 className="mt-2 text-xl font-semibold text-text-light">{metric.label}</h3>
-              <p className="text-sm text-text-light/60">{metric.description}</p>
+              <h3 className="mt-3 text-lg font-semibold text-text-light">{metric.label}</h3>
+              {metric.description && <p className="mt-1 text-sm text-text-light/60">{metric.description}</p>}
             </motion.div>
           ))}
         </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <p className="text-sm text-text-light/40 italic">
+            {impactMetrics.disclaimer}
+          </p>
+        </motion.div>
+
       </div>
     </section>
   );

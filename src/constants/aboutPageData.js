@@ -1,99 +1,179 @@
 // src/constants/aboutPageData.js
 
-import { FaChartLine, FaFlask, FaUsers, FaBookOpen, FaFeatherAlt, FaCode, FaPlane } from 'react-icons/fa';
+import { FaDumbbell, FaPlane, FaBook, FaPenNib, FaChartLine, FaFlask, FaUsers, FaShieldAlt } from 'react-icons/fa';
 
 export const aboutPageContent = {
   hero: {
-    eyebrow: "AI ARCHITECT • SYSTEMS ENGINEER",
-    story: [
-      "I am an AI Architect who bridges the gap between proof-of-concept and production. My background in .NET enterprise development taught me the importance of reliability and uptime, while my passion for GenAI drives me to push the boundaries of what automated systems can understand.",
-      "At Commercient, I transitioned from an ML Engineer to leading the AI strategy. I architected end-to-end systems including a high-throughput vLLM inference server and a multi-agent support bot that autonomously resolves tickets.",
-      "I specialize in the unglamorous but critical parts of AI: reducing latency, optimizing GPU costs, securing RAG pipelines, and integrating non-deterministic models into deterministic business logic."
+    title: "About Me",
+    subtitle: "AI Architect • Systems Engineer",
+    summary: [
+      "I’m an AI Architect with 2 years of hands-on experience building AI systems that solve real business problems. I specialize in RAG systems, automation pipelines, agentic systems, and cloud-native deployments.",
+      "I don't ship experiments — I design resilient, cost-optimized, and observable systems that integrate safely into enterprise stacks and deliver measurable business impact.",
+      "I'm AWS MLS-C01 certified (Mar 2024) and comfortable across stacks; I choose tools to solve product problems, not to show off tech."
     ],
-    headshotUrl: "/images/headshot-professional.png",
+    focusAreas: [
+      { name: "Reliability", icon: FaChartLine },
+      { name: "Cost-Effectiveness", icon: FaFlask },
+      { name: "Security", icon: FaShieldAlt },
+      { name: "User-Centered Outcomes", icon: FaUsers },
+    ],
+    headshotUrl: "/images/headshot-professional.png", 
   },
+
   journey: {
-    title: "Path to Architecture",
+    title: "My Journey",
     milestones: [
-      { date: "2020-2023", title: "Full Stack & CS Foundations", description: "Built scalable .NET applications and microservices, learning the rigor of enterprise software." },
-      { date: "2023", title: "Amazon ML Summer School", description: "Deep dive into Applied ML, transitioning focus towards advanced Deep Learning concepts." },
-      { date: "2024", title: "AWS ML Specialty Certification", description: "Validated expertise in cloud-native training, deployment, and MLOps pipelines." },
-      { date: "2024 - Present", title: "AI Architect at Commercient", description: "Designing and deploying production RAG systems, managing multi-GPU infra, and leading GenAI strategy." },
+      { 
+        year: "2018", 
+        title: "10th Grade", 
+        institution: "Shree Vasishta Vidyalaya, Surat", 
+        score: "Score: 71%", 
+        microcopy: "Early curiosity in problem solving, coding clubs and math competitions.",
+        image: "/images/about/school-days.jpg" 
+      },
+      { 
+        year: "2020", 
+        title: "12th Grade (Science)", 
+        institution: "Abhinav Education Society, Pune", 
+        score: "Score: 69%", 
+        microcopy: "Strengthened foundations in mathematics and algorithms.",
+        image: "/images/about/college-days.png" 
+      },
+      { 
+        year: "2020", 
+        title: "JEE Entrance", 
+        institution: "National Level Exam", 
+        score: "Percentile: 92", 
+        microcopy: "A formative push towards engineering and system design thinking.",
+        image: "/images/about/jee-prep.png" 
+      },
+      { 
+        year: "2020–2024", 
+        title: "BE (Computer Science)", 
+        institution: "SCET Surat", 
+        score: "CGPA: 8.4", 
+        microcopy: "Built foundational software engineering skills, distributed systems projects. Started applying ML in college research.",
+        image: "/images/about/engineering-projects.jpg" 
+      },
+      { 
+        year: "2022", 
+        title: "Data Analyst Intern", 
+        institution: "AdvancedWare Technology", 
+        score: "", 
+        microcopy: "Hands-on with data cleaning, dashboards, and production constraints like missing data and validation.",
+        image: "/images/about/data-intern.jpg" 
+      },
+      { 
+        year: "2023", 
+        title: "ML Training", 
+        institution: "Amazon ML Summer School", 
+        score: "", 
+        microcopy: "Deep dive into scalable ML architectures and applied projects.",
+        image: "/images/about/amazon-ml.png" 
+      },
+      { 
+        year: "Jan 2024", 
+        title: "AI Intern", 
+        institution: "Commercient", 
+        score: "", 
+        microcopy: "First exposure to integrating AI into ERP→CRM flows; worked on practical automation tasks.",
+        image: "/images/about/ai-engineer.png" 
+      },
+      { 
+        year: "Mar 2024", 
+        title: "AWS Certification", 
+        institution: "AWS Certified Machine Learning – Specialty", 
+        score: "MLS-C01", 
+        microcopy: "Formalized best practices for production ML systems and cloud deployment.",
+        image: "/images/about/aws-cert.png" 
+      },
+      { 
+        year: "Jun 2024 - Present", 
+        title: "AI Engineer", 
+        institution: "Commercient", 
+        score: "", 
+        microcopy: "Designing and shipping production RAG systems, AI agents, and inference infra. Focused on observability and cost.",
+        image: "/images/about/ai-engineer.png" 
+      },
     ],
   },
+
   skills: {
-    eyebrow: "TECHNICAL STACK",
     title: "Core Competencies",
-    tabs: [
+    categories: [
       {
-        name: "AI Systems & GenAI",
-        skillsList: [
-          { name: "RAG Architectures", level: 95 },
-          { name: "LLM Deployment (vLLM/TGI)", level: 90 },
-          { name: "Multi-Agent Systems (LangGraph)", level: 85 },
-          { name: "Fine-tuning (QLoRA)", level: 80 },
-        ],
+        title: "GenAI & LLMs",
+        subtopics: "RAG systems, Embeddings, Retrieval pipelines, LLM orchestration, Agent design & safety, Prompt engineering, Finetuning.",
+        example: "Designed a RAG stack with semantic search + citation tracking, deployed to serve customer support queries."
       },
       {
-        name: "Cloud & MLOps",
-        skillsList: [
-          { name: "AWS (SageMaker, Lambda, EC2)", level: 90 },
-          { name: "Docker & Containerization", level: 90 },
-          { name: "CI/CD (GitHub Actions)", level: 85 },
-          { name: "Kubernetes (EKS)", level: 70 },
-        ],
+        title: "MLOps & Infra",
+        subtopics: "CI/CD for models (MLflow / GitHub Actions), Model registry, Automated retraining, Canary deployments, Feature stores, Terraform.",
+        example: "Implemented a model CI pipeline with automated tests, performance gates, and rollback."
       },
       {
-        name: "Backend Engineering",
-        skillsList: [
-          { name: "Python (FastAPI, PyTorch)", level: 95 },
-          { name: ".NET Core / C#", level: 90 },
-          { name: "System Design", level: 85 },
-          { name: "Database Design (SQL/Vector)", level: 85 },
-        ],
+        title: "Data & Engineering",
+        subtopics: "ETL/ELT, Batch & streaming pipelines, Data validation, Schema evolution, PostgreSQL/NoSQL, Kafka.",
+        example: "Built an ingestion pipeline that normalized ERP exports and produced clean features for RAG."
       },
       {
-        name: "Soft Skills", // Kept for completeness but simplified
-        skillsList: [
-          { name: "Technical Leadership", level: 90 },
-          { name: "Problem Solving", level: 95 },
-          { name: "Stakeholder Management", level: 85 },
-        ],
+        title: "Cloud & Deployment",
+        subtopics: "AWS (SageMaker, ECS/EKS, Lambda, S3), GPU infra, Autoscaling, Cost optimization strategies.",
+        example: "Deployed LLMs on A10G instances with autoscaling and spot instance fallbacks for cost efficiency."
       },
-    ],
+      {
+        title: "Systems & Architecture",
+        subtopics: "Distributed systems patterns, Observability (metrics/logs/traces), SLA/SLI design, Security & data governance.",
+        example: "Designed service-level SLOs and alerting to surface model degradation early."
+      },
+      {
+        title: "Soft Skills & Leadership",
+        subtopics: "Stakeholder communication, Technical writing, Mentoring, Cross-functional collaboration, Project scoping.",
+        example: "Led technical discussions to shape product roadmaps and translated ML constraints into business timelines."
+      }
+    ]
   },
+
   philosophy: {
     title: "Engineering Philosophy",
     principles: [
       { Icon: FaChartLine, name: "Optimize for Latency" },
       { Icon: FaFlask, name: "Data > Model Size" },
       { Icon: FaUsers, name: "User-Centric AI" },
-      { Icon: FaBookOpen, name: "Reproducible Infra" },
+      { Icon: FaShieldAlt, name: "Reproducible Infra" },
     ],
     quote: "The best AI systems are invisible. They don't just chat—they execute work with reliability, low latency, and predictable costs.",
   },
 
-  beyondCode: {
-    title: "When I'm Not Architecting AI Systems",
+  hobbies: {
+    title: "Beyond Code",
+    intro: "I believe hobbies shape your thinking — structured workouts mirror disciplined system design.",
     activities: [
       {
-        Icon: FaFeatherAlt,
-        name: "Technical Writing",
-        description: "Writing about LLM deployment challenges and RAG architectures.",
-        imageUrl: "/images/about/writing.png",
+        name: "Gym & Discipline",
+        description: "Daily routines that build mental and physical resilience.",
+        icon: FaDumbbell,
+        image: "/images/about/hobby-gym.png"
       },
       {
-        Icon: FaCode,
-        name: "Open Source",
-        description: "Contributing to LangChain and local LLM runners.",
-        imageUrl: "/images/about/exploring.png",
-      },
-      {
-        Icon: FaPlane,
         name: "Traveling",
-        description: "Exploring new cultures to broaden my perspective.",
-        imageUrl: "/images/about/traveling.png",
+        description: "Exploring new cultures to broaden perspective and adaptability.",
+        icon: FaPlane,
+        image: "/images/about/hobby-travel.png"
       },
-    ],
-  },
+      {
+        name: "Politics & Mythology",
+        description: "Reading history to understand context, argumentation, and human systems.",
+        icon: FaBook,
+        image: "/images/about/hobby-reading.png"
+      },
+      {
+        name: "Technical Writing",
+        description: "Documenting architectural decisions and sharing knowledge.",
+        icon: FaPenNib,
+        image: "/images/about/hobby-writing.png",
+        link: "/insights"
+      },
+    ]
+  }
 };

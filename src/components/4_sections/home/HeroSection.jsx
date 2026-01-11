@@ -1,5 +1,3 @@
-// src/components/4_sections/home/HeroSection.jsx
-
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -48,24 +46,16 @@ const HeroSection = () => {
               {hero.subtitle}
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-10 mt-10 lg:justify-start">
-              {hero.stats.map((stat, index) => (
-                <div key={index} className="flex flex-col">
-                  <p className="text-4xl font-extrabold text-white font-manrope tracking-tight">
-                    {stat.isCurrency && '$'}{stat.value.toLocaleString()}{stat.suffix}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-text-light/70 uppercase tracking-widest text-xs">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mt-12 lg:justify-start">
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mt-10 lg:justify-start">
               <Button href={hero.ctaButtons.primary.link} variant="primary">{hero.ctaButtons.primary.text}</Button>
               <Button href={hero.ctaButtons.secondary.link} variant="secondary">{hero.ctaButtons.secondary.text}</Button>
               <Button href={hero.ctaButtons.tertiary.link} variant="tertiary">{hero.ctaButtons.tertiary.text}</Button>
             </motion.div>
+
+            <motion.p variants={itemVariants} className="max-w-xl mx-auto mt-6 text-sm italic text-text-light/60 lg:mx-0">
+              {hero.microcopy}
+            </motion.p>
+
           </div>
 
           <motion.div variants={itemVariants} className="flex items-center justify-center lg:col-span-2">

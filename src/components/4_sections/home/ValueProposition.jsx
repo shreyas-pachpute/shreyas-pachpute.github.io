@@ -1,5 +1,3 @@
-// src/components/4_sections/home/ValueProposition.jsx
-
 'use client';
 import { motion } from 'framer-motion';
 import { homeContent } from '@/constants/mockData';
@@ -29,22 +27,21 @@ const ValueProposition = () => {
           {valueProposition.cards.map((card, index) => (
             <motion.div
               key={index}
-              className="p-8 transition-all duration-300 bg-white border rounded-lg shadow-sm border-subtle-gray hover:shadow-xl hover:-translate-y-2"
+              className="p-8 transition-all duration-300 bg-white border rounded-lg shadow-sm border-subtle-gray hover:shadow-xl hover:-translate-y-2 flex flex-col items-start"
               initial="offscreen"
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.5 }}
               variants={cardVariants}
             >
-              <card.icon className="w-10 h-10 mb-4 text-electric-purple" />
-              <h3 className="mb-3 text-xl font-bold font-manrope">{card.title}</h3>
-              <ul className="space-y-2 text-text-charcoal/80">
-                {card.items.map((item, i) => (
-                  <li key={i} className="flex items-center">
-                    <span className="mr-2 text-accent-cyan">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 mb-6 rounded-full bg-electric-purple/10">
+                <card.icon className="w-8 h-8 text-electric-purple" />
+              </div>
+              <h3 className="mb-4 text-xl font-bold font-manrope">{card.title}</h3>
+              
+              {/* Updated to render paragraph text */}
+              <p className="text-text-charcoal/80 leading-relaxed text-sm md:text-base">
+                {card.text}
+              </p>
             </motion.div>
           ))}
         </div>

@@ -1,84 +1,95 @@
-// src/constants/workPageData.js
+import { FaRobot, FaServer, FaCogs, FaDatabase, FaTools, FaChartLine } from 'react-icons/fa';
 
 export const workPageContent = {
   hero: {
-    title: "Engineering Experience",
-    subtitle: "A track record of shipping RAG systems, multi-agent workflows, and cost-optimized infrastructure in production.",
-    filters: ["All", "Architecture", "RAG", "Infrastructure", "Optimization"],
-  },
-
-  currentRole: {
-    title: "AI Architect", // Removed "Lead Engineer"
-    company: "Commercient LLC",
-    duration: "January 2024 – Present",
-    location: "Remote (US)",
-    description: "Spearheading the transition to AI-native operations. Responsible for architectural decisions, cloud infrastructure, and the end-to-end lifecycle of GenAI products.",
-    contributions: [
-      {
-        id: "contribution-1",
-        title: "Enterprise RAG Architecture",
-        details: [
-          "Designed a <strong>hybrid-search RAG pipeline</strong> handling 1000+ daily queries with sub-300ms latency.",
-          "Implemented <strong>semantic caching (Redis)</strong> to reduce LLM API costs by 35%.",
-          "Built a feedback loop using <strong>LangSmith</strong> to monitor and improve retrieval accuracy over time.",
-        ],
-        techStack: ["LangChain", "Pinecone", "Redis", "Python"],
-      },
-      {
-        id: "contribution-2",
-        title: "LLM Infrastructure Optimization",
-        details: [
-          // Updated text for Local GPUs and Open Source models
-          "Migrated from proprietary APIs to <strong>self-hosted open source models like Llama and Qwen on local GPU systems</strong>, saving $15k/year.",
-          "Implemented <strong>vLLM with continuous batching</strong>, achieving 150 tokens/sec throughput.",
-          "Set up <strong>Prometheus/Grafana dashboards</strong> for real-time GPU monitoring and alerting.",
-        ],
-        techStack: ["vLLM", "Docker", "Grafana", "Local GPUs"],
-      },
-      {
-        id: "contribution-3",
-        title: "Strategic AI Implementation",
-        details: [
-          "Lead a team of 3 engineers in developing a <strong>Multi-Agent support bot</strong> that deflects 70% of L1 tickets.",
-          "Established <strong>CI/CD pipelines for ML</strong> using GitHub Actions to ensure reproducible model deployments.",
-        ],
-        techStack: ["Strategy", "Team Leadership", "MLOps", "GitHub Actions"],
-      },
-    ],
-  },
-
-  impact: {
-    eyebrow: "CUMULATIVE IMPACT",
-    title: "Scale & Reliability",
+    company: "Commercient",
+    role: "AI Engineer",
+    summary: "At Commercient, I integrated GenAI and ML into core product flows: lead capture, support automation, user-configurable RAG bots, and inference infra — all built to run in production.",
+    logoUrl: "/images/work/commercient-logo.png", 
     metrics: [
-      { value: "$15k", label: "Annual Infra Savings" },
-      { value: "99.9%", label: "System Uptime" },
-      { value: "300ms", label: "Avg Latency (p95)" },
-      { value: "40%", label: "Lead Gen Uplift" },
+      { value: 8, suffix: "+", label: "Production Agents", icon: FaRobot },
+      { value: 15000, prefix: "$", label: "Annual Infra Savings", icon: FaServer },
+      { value: 150, suffix: " tok/s", label: "Inference Throughput", icon: FaCogs },
+      { value: 300, suffix: "ms", label: "p95 Latency (RAG)", icon: FaChartLine },
+      { value: 70, suffix: "%", label: "Ticket Deflection", icon: FaDatabase },
     ],
+    microcopy: "Metrics representative of production deployments — detailed breakdowns and dashboards available in case studies."
   },
 
-  keyProjects: {
-    title: "Detailed Case Studies",
-    projects: [
-      {
-        imageUrl: "/images/projects/sales-agent-showcase.png",
-        title: "Sales Intelligence Agent (RAG)",
-        challenge: "Sales team wasted 20 hours/week manually qualifying leads with generic scripts.",
-        approach: "Architected a context-aware agent connected to HubSpot via function calling. Utilized a vector database for product knowledge retrieval.",
-        results: ["$12k/year SaaS license savings", "40% increase in qualified leads", "<2s response time"],
-        techStack: ["Python", "FastAPI", "LangChain", "HubSpot API"],
-        id: "sales-agent"
-      },
-      {
-        imageUrl: "/images/projects/multi-agent-showcase.png",
-        title: "Autonomous Support Triage System",
-        challenge: "L1 support was overwhelmed by repetitive queries, causing high response times.",
-        approach: "Deployed a multi-agent system (AutoGen) where 'Diagnostician' and 'Resolver' agents collaborate to solve tickets or route complex ones.",
-        results: ["70% auto-resolution rate", "24/7 coverage achieved", "Zero hallucination guardrails"],
-        techStack: ["AutoGen", "CosmosDB", "Docker", "Azure OpenAI"],
-        id: "support-automation"
-      },
-    ],
+  roleDetails: {
+    title: "Role & Responsibilities",
+    description: "I worked directly with the CTO and product leads to scope features, prioritize risk, and ship production-grade systems within the existing .NET ecosystem.",
+    points: [
+      "Design and build production GenAI features (RAG systems, bots, agents) that integrate with Commercient’s .NET portal and backend.",
+      "Ship inference infra across multi-GPU servers and AWS, including open-source LLMs and autoscaling strategies.",
+      "Implement MLOps pipelines for data, training, model versioning, and deployment (CI/CD).",
+      "Lead architecture discussions with C-level stakeholders and drive production rollouts and safety gating.",
+      "Instrument observability, drift detection, and cost-optimization to keep SLAs and budgets on track."
+    ]
   },
+
+  caseStudies: [
+    {
+      id: "sales-bot",
+      title: "Sales Bot — Automated Lead Gen",
+      timeline: "3 Months",
+      type: "Production",
+      problem: "The web team needed a way to qualify and capture incoming leads, map them to ERP/CRM records, and push to HubSpot without manual delay.",
+      solution: "Built a conversational pipeline using LangGraph + FastAPI. Implemented a hybrid extraction engine (Rules + LLM) to pull structured fields and integrated a Human-In-The-Loop (HITL) escalation path for ambiguous cases.",
+      impact: ["Faster lead capture", "Reduced manual triage time", "Real-time HubSpot sync"],
+      techStack: ["LangGraph", "FastAPI", "HubSpot API", "Redis"],
+      link: "/work/sales-bot" 
+    },
+    {
+      id: "rag-platform",
+      title: "Multi-Tenant RAG Platform",
+      timeline: "4 Months",
+      type: "Platform",
+      problem: "Customers needed personalized chatbots powered by their own content (Docs, YouTube, Sitemaps) with strict data isolation.",
+      solution: "Engineered a no-code control plane allowing users to build KBs. Built an ingestion pipeline (Fetch → Chunk → Embed) supporting multiple vector DBs (Pinecone, Milvus) and created a serving layer with citation tracking.",
+      impact: ["Reduced time-to-value (Weeks → Hours)", "Scalable multi-tenant architecture", "Cost-controlled ingestion"],
+      techStack: ["LangChain", "Python Workers", "Pinecone", "AWS S3"],
+      link: "/work/rag-platform"
+    },
+    {
+      id: "support-agent",
+      title: "Customer Support Agent",
+      timeline: "3 Months",
+      type: "Automation",
+      problem: "Support agents were overwhelmed by repetitive tickets. Historical knowledge was scattered across 10 years of unorganized data.",
+      solution: "Created an ingestion pipeline to clean and index 10 years of tickets. Built a context-aware agent for the support portal that suggests resolutions and handles escalation with audit trails.",
+      impact: ["70% Ticket Deflection", "Faster resolution for common queries", "High internal CSAT"],
+      techStack: ["LangChain", "Python ETL", "Kubernetes", "Prometheus"],
+      link: "/work/support-agent"
+    }
+  ],
+
+  otherSystems: [
+    {
+      title: "AI SQL View Generator",
+      description: "Generates required SQL Views for Phase-1 syncing (ERP → Gateway → CRM), speeding up integration for new ERPs and reducing manual DB onboarding.",
+    },
+    {
+      title: "AI Process Mapping",
+      description: "Automated object mapping & reconciliation logic for CRM→ERP updates, reducing mapping time and human error.",
+    },
+    {
+      title: "Fine-tuned Models",
+      description: "Built and evaluated task-specific finetuned models for specialized retrieval and structured extraction use-cases.",
+    },
+    {
+      title: "LLM Inference Engine",
+      description: "High-throughput, multi-GPU inference stack (vLLM) with autoscaling, batching, and spot-instance fallbacks. Supports Qwen, Llama, and DeepSeek.",
+    },
+    {
+      title: "Platform Tooling",
+      description: "CI/CD for models, model registry, regression tests, canary deploys, and automated rollback for model releases.",
+    }
+  ],
+
+  testimonial: {
+    quote: "Shreyas transformed our theoretical AI roadmap into a production reality. His ability to balance cutting-edge LLM tech with the reliability requirements of our enterprise .NET stack was invaluable.",
+    author: "Richard Jenkins",
+    role: "CTO, Commercient"
+  }
 };
